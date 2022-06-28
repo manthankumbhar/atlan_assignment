@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <div className="App__header">
         <h1 className="App__header--h1">Altan Assignment</h1>
-        <a href="/" className="App__header--btn">
+        <a href="/" target="_blank" className="App__header--btn">
           Check loom demo
         </a>
       </div>

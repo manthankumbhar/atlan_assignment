@@ -81,13 +81,11 @@ export default function Home() {
       />
       <Result output={output} clearOutput={clearOutput} />
       <form onSubmit={(e) => onSubmit(e, query)} className="home__content">
-        <textarea
+        <input
           required
           placeholder="Enter SQL query"
-          className="home__content--textArea"
+          className="home__content--input"
           onChange={(e) => onChange(e)}
-          rows="6"
-          cols="25"
         />
         <button className="home__content--btn" type="submit">
           Run Query
