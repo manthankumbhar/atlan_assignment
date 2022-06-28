@@ -4,7 +4,12 @@ import Home from "./components/Home/Home";
 function App() {
   return (
     <div className="App">
-      <h1>Atlan Assignment</h1>
+      <div className="App__header">
+        <h1 className="App__header--h1">Altan Assignment</h1>
+        <a href="/" className="App__header--btn">
+          Check loom demo
+        </a>
+      </div>
       <Home />
     </div>
   );
