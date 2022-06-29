@@ -8,8 +8,8 @@
   background-color: #222222;
   color: white;
 
-  flex: 1;
   overflow: auto;
+  flex: 1;
 
   &__btn {
     font-size: 1.4rem;
@@ -46,4 +46,24 @@
     border: 1px solid red;
     padding: 5px;
   }
+}
+
+.pagination {
+  padding-left: 0;
+  font-size: 1.3rem;
+  list-style: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-evenly;
+
+  // &__page {
+  //   margin-top: 1rem;
+  // }
+
+  &__active {
+    color: red;
+  }
+  // display: flex;
+  // justify-content: space-evenly;
 }

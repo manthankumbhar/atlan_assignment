@@ -46,10 +46,10 @@ export default function Home() {
     } catch (error) {
       console.error(error);
       var errorMessage = null;
-      if (error.message === "r.Term is not a constructor") {
-        errorMessage = "Incorrect format.";
-      } else {
+      if (error.message.includes("Table does not exist")) {
         errorMessage = "Table doesn't exist.";
+      } else {
+        errorMessage = "Incorrect format";
       }
       setOpenSnackbar(true);
       setsnackbarSeverity("error");
@@ -99,15 +99,33 @@ export default function Home() {
         </button>
         <button
           className="home__content--btn"
+          onClick={(e) => predefinedSubmit(e, "SELECT count(*) FROM customers")}
+        >
+          SELECT count(*) FROM customers
+        </button>
+        <button
+          className="home__content--btn"
           onClick={(e) => predefinedSubmit(e, "SELECT * FROM products")}
         >
           SELECT * FROM products
         </button>
         <button
           className="home__content--btn"
+          onClick={(e) => predefinedSubmit(e, "SELECT count(*) FROM products")}
+        >
+          SELECT count(*) FROM products
+        </button>
+        <button
+          className="home__content--btn"
           onClick={(e) => predefinedSubmit(e, "SELECT * FROM suppliers")}
         >
           SELECT * FROM suppliers
+        </button>
+        <button
+          className="home__content--btn"
+          onClick={(e) => predefinedSubmit(e, "SELECT count(*) FROM suppliers")}
+        >
+          SELECT count(*) FROM suppliers
         </button>
       </form>
     </div>
