@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { createRef, useCallback, useState } from "react";
 import "./Home.scss";
 import Customers from "../Database/Customers";
 import Products from "../Database/Products";
@@ -10,6 +10,7 @@ import Result from "../Result/Result";
 export default function Home() {
   const [query, setQuery] = useState("");
   const [output, setOutput] = useState([]);
+  const scrollRef = createRef();
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarSeverity, setsnackbarSeverity] = useState("error");
@@ -19,43 +20,47 @@ export default function Home() {
     setQuery(e.target.value);
   };
 
-  const onSubmit = useCallback((e, query) => {
-    try {
-      e.preventDefault();
-      var queryName = null;
-      var table = null;
+  const onSubmit = useCallback(
+    (e, query) => {
+      try {
+        e.preventDefault();
+        var queryName = null;
+        var table = null;
 
-      if (query.includes("customers")) {
-        queryName = "customers";
-        table = Customers;
-      } else if (query.includes("products")) {
-        queryName = "products";
-        table = Products;
-      } else if (query.includes("suppliers")) {
-        queryName = "suppliers";
-        table = Suppliers;
-      }
+        if (query.includes("customers")) {
+          queryName = "customers";
+          table = Customers;
+        } else if (query.includes("products")) {
+          queryName = "products";
+          table = Products;
+        } else if (query.includes("suppliers")) {
+          queryName = "suppliers";
+          table = Suppliers;
+        }
 
-      let updatedQuery = query.replace(queryName, "?");
-      let res = alasql(updatedQuery, [table]);
-      setOutput(res);
-      setOpenSnackbar(true);
-      setsnackbarSeverity("success");
-      setSnackbarMessage("Data fetched. :)");
-      return res;
-    } catch (error) {
-      console.error(error);
-      var errorMessage = null;
-      if (error.message.includes("Table does not exist")) {
-        errorMessage = "Table doesn't exist.";
-      } else {
-        errorMessage = "Incorrect format";
+        let updatedQuery = query.replace(queryName, "?");
+        let res = alasql(updatedQuery, [table]);
+        setOutput(res);
+        setOpenSnackbar(true);
+        setsnackbarSeverity("success");
+        setSnackbarMessage("Data fetched. :)");
+        scrollRef.current.scrollTo(0, 0);
+        return res;
+      } catch (error) {
+        console.error(error);
+        var errorMessage = null;
+        if (error.message.includes("Table does not exist")) {
+          errorMessage = "Table doesn't exist.";
+        } else {
+          errorMessage = "Incorrect format";
+        }
+        setOpenSnackbar(true);
+        setsnackbarSeverity("error");
+        setSnackbarMessage(`Error - ${errorMessage}`);
       }
-      setOpenSnackbar(true);
-      setsnackbarSeverity("error");
-      setSnackbarMessage(`Error - ${errorMessage}`);
-    }
-  }, []);
+    },
+    [scrollRef]
+  );
 
   const predefinedSubmit = useCallback(
     (e, data) => {
@@ -79,7 +84,7 @@ export default function Home() {
         snackBarSeverity={snackbarSeverity}
         snackBarMessage={snackbarMessage}
       />
-      <Result output={output} clearOutput={clearOutput} />
+      <Result output={output} clearOutput={clearOutput} scrollRef={scrollRef} />
       <form onSubmit={(e) => onSubmit(e, query)} className="home__content">
         <input
           required

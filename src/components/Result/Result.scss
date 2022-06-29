@@ -45,6 +45,11 @@
     font-size: 1.2rem;
     border: 1px solid red;
     padding: 5px;
+
+    &--header {
+      background-color: rgba(255, 255, 0, 0.836);
+      color: black;
+    }
   }
 }
 
@@ -57,13 +62,7 @@
   display: flex;
   justify-content: space-evenly;
 
-  // &__page {
-  //   margin-top: 1rem;
-  // }
-
   &__active {
     color: red;
   }
-  // display: flex;
-  // justify-content: space-evenly;
 }
