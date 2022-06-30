@@ -9,4 +9,35 @@ body {
 
 .App {
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 1.5rem 2rem 1rem 2rem;
+
+    &--h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    &--btn {
+      padding: 5px;
+      border: 1px solid black;
+      font-size: 1.4rem;
+      border-radius: 3px;
+      text-decoration: none;
+      color: black;
+      transition: all 0.2s;
+      margin: 0 1rem;
+
+      &:hover {
+        background-color: grey;
+        color: white;
+      }
+    }
+  }
 }
