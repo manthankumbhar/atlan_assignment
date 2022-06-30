@@ -6,14 +6,14 @@ function App() {
     <div className="App">
       <div className="App__header">
         <h1 className="App__header--h1">Altan Assignment</h1>
-        <div>
-          <a href="/" target="_blank" className="App__header--btn">
-            Small doc on my journey
-          </a>
-          <a href="/" target="_blank" className="App__header--btn">
-            Check loom demo
-          </a>
-        </div>
+        <a
+          href="https://open-source-notion.manthankumbhar.com/shared/1f374f3f-5ae2-4715-9a24-fb3ae3bac03c"
+          rel="noreferrer"
+          target="_blank"
+          className="App__header--btn"
+        >
+          README
+        </a>
       </div>
       <Home />
     </div>

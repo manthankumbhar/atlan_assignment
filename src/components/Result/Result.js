@@ -31,13 +31,13 @@ export default function Result({ output, clearOutput, scrollRef }) {
 
   return (
     <div className="result" ref={scrollRef}>
-      <p className="result__p">Plaground:</p>
+      <p className="result__p">Playground:</p>
       <button className="result__btn" onClick={clearOutput}>
         clear playground
       </button>
-      {output.length !== 0 ? (
+      {data.length !== 0 ? (
         <tr>
-          {Object.keys(output[0]).map((val, key) => (
+          {Object.keys(data[0]).map((val, key) => (
             <th key={key} className="result__table result__table--header">
               {val}
             </th>
